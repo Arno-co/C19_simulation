@@ -2,10 +2,12 @@ import {Person, DEFAULTS} from './person';
 import {Util} from './util';
 
 export default class Simulation {
-    constructor() {
+    constructor(density, socialDistancingRate) {
         this.DIM_X = 600;
         this.DIM_Y = 400;
         this.NUM_PERSONS = 100;
+        this.density = density;
+        this.socialDistancingRate = socialDistancingRate;
         this.persons = [];
         this.addPersons();
         this.addPatientZero();
@@ -17,7 +19,7 @@ export default class Simulation {
     // }
 
     addPersons() {
-        for(let i=0; i<this.NUM_PERSONS; i++) {
+        for(let i=0; i<this.density; i++) {
             this.persons.push(new Person({
                 pos: this.randomPosition(), 
                 vel: Util.randomVec(DEFAULTS.SPEED), 
@@ -40,7 +42,7 @@ export default class Simulation {
 
     addConsciousCitizen() {
         // debugger;
-        for (let i=0; i<this.persons.length * 0.75; i++) {
+        for (let i=0; i<this.persons.length * this.socialDistancingRate; i++) {
             this.persons[i].consciousCitizen = true;
             this.persons[i].vel = [0,0];
         }

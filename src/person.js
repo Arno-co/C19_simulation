@@ -2,7 +2,7 @@ import MovingObject from "./moving_object";
 import { Util } from './util';
 
 export const DEFAULTS = {
-    RADIUS: 5,
+    RADIUS: 2,
     COLOR: "#000066",
     SPEED: 2,
     MASS: 1

@@ -8,9 +8,13 @@ export default class SimulationView {
     }
 
     start() {
-        setInterval(() => {
+        let simulationInterval = setInterval(() => {
             this.simulation.step();
             this.simulation.draw(this.ctx);
         }, 20)
+    }
+
+    stop() {
+        clearInterval(simulationInterval);
     }
 }
