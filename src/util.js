@@ -30,6 +30,7 @@ export const Util = {
    resolveCollision(pers, otherPers) {
       const xVelDiff = pers.vel[0] - otherPers.vel[0];
       const yVelDiff = pers.vel[1] - otherPers.vel[1];
+      
 
       const xDist = otherPers.pos[0] - pers.pos[0];
       const yDist = otherPers.pos[1] - pers.pos[1];
@@ -84,26 +85,72 @@ export const Util = {
    //       const m1 = pers.mass;
    //       const m2 = otherPers.mass;
 
-   //       // vel before equation
-   //       const u1 = Util.rotate(pers.vel, angle);
-   //       const u2 = Util.rotate(otherPers.vel, angle);
+   //       if (pers.consciousCitizen === true) {
+   //          // vel before equation
+   //          const u1 = Util.rotate(pers.vel, angle);
+   //          const u2 = Util.rotate(otherPers.vel, angle);
 
-   //       // vel after 1d collision equation
-   //       // const v1 = { x: u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), y: u1.y };
-   //       // const v2 = { x: u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), y: u2.y };
-   //       const v1 = [u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), u1.y];
-   //       const v2 = [u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), u2.y];
+   //          // vel after 1d collision equation
+   //          const v1 = [u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), u1.y];
+   //          const v2 = [u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), u2.y];
 
-   //       // Final vel after rotating axis back to original location
-   //       const vFinal1 = Util.rotate(v1, -angle);
-   //       const vFinal2 = Util.rotate(v2, -angle);
+   //          // Final vel after rotating axis back to original location
+   //          const vFinal1 = Util.rotate(v1, -angle);
+   //          const vFinal2 = Util.rotate(v2, -angle);
 
-   //       // Swap pers velocities for realistic bounce effect
-   //       pers.vel[0] = vFinal1.x;
-   //       pers.vel[1] = vFinal1.y;
+   //          // Swap pers velocities for realistic bounce effect
+   //          // pers.vel[0] = vFinal1.x;
+   //          // pers.vel[1] = vFinal1.y;
+   //          pers.vel[0] = 0;
+   //          pers.vel[1] = 0;
 
-   //       otherPers.vel[0] = vFinal2.x;
-   //       otherPers.vel[1] = vFinal2.y;
+   //          otherPers.vel[0] = vFinal2.x;
+   //          otherPers.vel[1] = vFinal2.y;
+
+   //       } else if (otherPers.consciousCitizen === true){
+   //          // vel before equation
+   //          const u1 = Util.rotate(pers.vel, angle);
+   //          const u2 = Util.rotate(otherPers.vel, angle);
+
+   //          // vel after 1d collision equation
+  
+   //          const v1 = [u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), u1.y];
+   //          const v2 = [u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), u2.y];
+
+   //          // Final vel after rotating axis back to original location
+   //          const vFinal1 = Util.rotate(v1, -angle);
+   //          // const vFinal2 = Util.rotate(v2, -angle);
+
+   //          // Swap pers velocities for realistic bounce effect
+   //          pers.vel[0] = vFinal1.x;
+   //          pers.vel[1] = vFinal1.y;
+
+   //          // otherPers.vel[0] = vFinal2.x;
+   //          // otherPers.vel[1] = vFinal2.y;
+   //          otherPers.vel[0] = 0;
+   //          otherPers.vel[1] = 0;
+   //       } else {
+   //          // vel before equation
+   //          const u1 = Util.rotate(pers.vel, angle);
+   //          const u2 = Util.rotate(otherPers.vel, angle);
+
+   //          // vel after 1d collision equation
+   //          // const v1 = { x: u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), y: u1.y };
+   //          // const v2 = { x: u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), y: u2.y };
+   //          const v1 = [u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), u1.y];
+   //          const v2 = [u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), u2.y];
+
+   //          // Final vel after rotating axis back to original location
+   //          const vFinal1 = Util.rotate(v1, -angle);
+   //          const vFinal2 = Util.rotate(v2, -angle);
+
+   //          // Swap pers velocities for realistic bounce effect
+   //          pers.vel[0] = vFinal1.x;
+   //          pers.vel[1] = vFinal1.y;
+
+   //          otherPers.vel[0] = vFinal2.x;
+   //          otherPers.vel[1] = vFinal2.y;
+   //       }
    //    }
    // }
 }

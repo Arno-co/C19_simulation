@@ -5,7 +5,7 @@ export default class Simulation {
     constructor() {
         this.DIM_X = 600;
         this.DIM_Y = 400;
-        this.NUM_PERSONS = 10;
+        this.NUM_PERSONS = 100;
         this.persons = [];
         this.addPersons();
         this.addPatientZero();
@@ -40,7 +40,7 @@ export default class Simulation {
 
     addConsciousCitizen() {
         // debugger;
-        for (let i=0; i<this.persons.length * 0.25; i++) {
+        for (let i=0; i<this.persons.length * 0.75; i++) {
             this.persons[i].consciousCitizen = true;
             this.persons[i].vel = [0,0];
         }
