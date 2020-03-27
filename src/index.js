@@ -1,7 +1,7 @@
 import Simulation from './simulation';
 import SimulationView from './simulation_view';
 import MovingObject from './moving_object';
-import Person from './person';
+import {Person} from './person';
 
 
 document.addEventListener("DOMContentLoaded", function () {

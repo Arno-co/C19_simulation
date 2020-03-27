@@ -8,6 +8,8 @@ export default class Simulation {
         this.NUM_PERSONS = 10;
         this.persons = [];
         this.addPersons();
+        this.addPatientZero();
+        this.addConsciousCitizen();
     }
 
     // handleDensity() {
@@ -20,7 +22,27 @@ export default class Simulation {
                 pos: this.randomPosition(), 
                 vel: Util.randomVec(DEFAULTS.SPEED), 
                 simulation: this}));
-            
+
+            if (i!==0) {
+                for (let j = 0; j < this.persons.length-1; j++) {
+                    if ((Util.dist(this.persons[i].pos, this.persons[j].pos) - DEFAULTS.RADIUS * 2) < 0) {
+                        this.persons[i].pos = this.randomPosition();
+                        j=-1;
+                    }
+                }
+            }
+        }
+    }
+
+    addPatientZero() {
+        this.persons[this.persons.length-1].color = 'red';
+    }
+
+    addConsciousCitizen() {
+        // debugger;
+        for (let i=0; i<this.persons.length * 0.25; i++) {
+            this.persons[i].consciousCitizen = true;
+            this.persons[i].vel = [0,0];
         }
     }
     
@@ -28,7 +50,7 @@ export default class Simulation {
         const rad = DEFAULTS.RADIUS;
         let x = Util.randomIntRange(rad, this.DIM_X - rad);
         let y = Util.randomIntRange(rad, this.DIM_Y - rad);
-        return [x,y]
+        return [x,y];
     }
 
     draw(ctx) {
@@ -41,22 +63,34 @@ export default class Simulation {
             person.move();
         });
     }
+
+    removeObject(object) {
+        this.persons.splice(this.persons.indexOf(object), 1)
+    }
     
 
     checkCollisions() {
         for (let i=0; i<this.persons.length;i++) {
-            for (let j=1; j>i && j<this.persons.length; j++) {
-            // for (let j=0; j<this.persons.length; j++) {
+            for (let j=i+1; j<this.persons.length; j++) {
                 let pers1 = this.persons[i];
                 let pers2 = this.persons[j];
-
+                
+                // debugger;
                 if (pers1.isCollidedWith(pers2)) {
-                        pers1.vel = pers1.changeDir(pers1.vel);
-                        pers1.color = '#ff0000';
-                        pers2.vel = pers2.changeDir(pers2.vel);
-                        pers2.color = '#ff0000';
+                        // pers1.vel = pers1.changeDir(pers1.vel);
+                        // pers1.color = '#ff0000';
+                        // pers2.vel = pers2.changeDir(pers2.vel);
+                        // pers2.color = '#ff0000';
                         // pers1.pos = this.bounce(pers1.vel, pers1.pos)
                         // pers2.pos = this.bounce(pers2.vel, pers2.pos)
+                        Util.resolveCollision(pers1, pers2);
+                        if (pers1.color === 'red') {
+                        pers2.color = 'red'
+                        } else if (pers2.color === 'red') {
+                            pers1.color = 'red'
+                        };
+                        // this.removeObject(pers1);
+                        // this.removeObject(pers2);
                         
                 }
             }

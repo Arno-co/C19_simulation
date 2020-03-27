@@ -7,6 +7,7 @@ export default class MovingObject {
     this.vel  = parameters.vel;
     this.radius  = parameters.radius;
     this.color  = parameters.color;
+    this.mass = parameters.mass;
     this.simulation = parameters.simulation;
     }
 
@@ -44,8 +45,16 @@ export default class MovingObject {
     
     isCollidedWith(otherObject) {
         const centerDist = Util.dist(this.pos, otherObject.pos);
-        return centerDist <= (this.radius + otherObject.radius);
+        if (centerDist < (this.radius + otherObject.radius)) {
+            return true;
+        } else {
+            return false;
+        };
 
+    }
+
+    remove() {
+        this.simulation.remove(this);
     }
 
  }
