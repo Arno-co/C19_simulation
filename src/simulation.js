@@ -1,11 +1,11 @@
-import Person from './person';
+import {Person, DEFAULTS} from './person';
 import {Util} from './util';
 
 export default class Simulation {
     constructor() {
         this.DIM_X = 600;
         this.DIM_Y = 400;
-        this.NUM_PERSONS = 100;
+        this.NUM_PERSONS = 10;
         this.persons = [];
         this.addPersons();
     }
@@ -16,12 +16,19 @@ export default class Simulation {
 
     addPersons() {
         for(let i=0; i<this.NUM_PERSONS; i++) {
-            this.persons.push(new Person({pos: this.randomPosition(), simulation: this}));
+            this.persons.push(new Person({
+                pos: this.randomPosition(), 
+                vel: Util.randomVec(DEFAULTS.SPEED), 
+                simulation: this}));
+            
         }
     }
-
+    
     randomPosition() {
-        return [(Math.random() * (this.DIM_X)), (Math.random() * (this.DIM_Y))]
+        const rad = DEFAULTS.RADIUS;
+        let x = Util.randomIntRange(rad, this.DIM_X - rad);
+        let y = Util.randomIntRange(rad, this.DIM_Y - rad);
+        return [x,y]
     }
 
     draw(ctx) {
@@ -32,39 +39,44 @@ export default class Simulation {
     moveObjects() {
         this.persons.forEach((person) => {
             person.move();
-        })
+        });
     }
+    
 
     checkCollisions() {
         for (let i=0; i<this.persons.length;i++) {
-            for (let j=1; j>1 && j<this.persons.length; j++) {
-                const pers1 = this.persons[i];
-                const pers2 = this.persons[j];
+            for (let j=1; j>i && j<this.persons.length; j++) {
+            // for (let j=0; j<this.persons.length; j++) {
+                let pers1 = this.persons[i];
+                let pers2 = this.persons[j];
 
                 if (pers1.isCollidedWith(pers2)) {
-                    pers1.changeDir(pers1.vel);
-                    pers2.changeDir(pers2.vel);
+                        pers1.vel = pers1.changeDir(pers1.vel);
+                        pers1.color = '#ff0000';
+                        pers2.vel = pers2.changeDir(pers2.vel);
+                        pers2.color = '#ff0000';
+                        // pers1.pos = this.bounce(pers1.vel, pers1.pos)
+                        // pers2.pos = this.bounce(pers2.vel, pers2.pos)
+                        
                 }
             }
         }
     }
 
-    changeDir(vel) {
-        if (vel[0] > vel [1]) {
-            vel[0] = - vel[0]
-        } else {
+
+    bounce(pos, vel) {
+        let rad = DEFAULTS.RADIUS
+        if (pos[0]-rad <= 0 || pos[0]+rad>= this.DIM_X) {
+           vel[0] = - vel[0] 
+        } else if (pos[1]-rad <= 0 || pos[1]+rad >= this.DIM_Y) {
             vel[1] = - vel[1]
         }
         return vel;
     }
 
-    bounce(pos, vel) {
-        if (pos[0] <= 0 || pos [0]>= this.DIM_X) {
-           vel[0] = - vel[0] 
-        } else if (pos[1] <= 0 || pos[1] >= this.DIM_Y) {
-            vel[1] = - vel[1]
-        }
-        return vel;
+    step() {
+        this.moveObjects();
+        this.checkCollisions();
     }
 
 }

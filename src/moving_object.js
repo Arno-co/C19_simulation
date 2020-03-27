@@ -12,7 +12,7 @@ export default class MovingObject {
 
 
     draw(ctx) {
-        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
         ctx.beginPath();
         ctx.arc(
             this.pos[0],
@@ -22,7 +22,7 @@ export default class MovingObject {
             2 * Math.PI
             // false
         );
-        ctx.fill();
+        ctx.stroke();
      }
 
     move() {
@@ -30,10 +30,22 @@ export default class MovingObject {
         this.vel = this.simulation.bounce(this.pos, this.vel);
         // console.log(this.pos);
     };
+
+    changeDir(vel) {
+        
+        if (Math.abs(vel[0]) > Math.abs(vel[1])) {
+            vel[0] = - vel[0]
+        } else {
+            vel[1] = - vel[1]
+        }
+        
+        return vel;
+    }
     
-    isCollidedWith(otherPerson) {
-        const centerDist = Util.dist(this.pos, otherPerson.pos);
-        return centerDist < (this.radius + otherPerson.radius);
+    isCollidedWith(otherObject) {
+        const centerDist = Util.dist(this.pos, otherObject.pos);
+        return centerDist <= (this.radius + otherObject.radius);
+
     }
 
  }

@@ -9,7 +9,7 @@ export default class SimulationView {
 
     start() {
         setInterval(() => {
-            this.simulation.moveObjects();
+            this.simulation.step();
             this.simulation.draw(this.ctx);
         }, 20)
     }

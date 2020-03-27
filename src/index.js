@@ -24,25 +24,25 @@ document.addEventListener("DOMContentLoaded", function () {
     // new SimulationView(game, ctx).start();
 
 
-    let mo = new MovingObject({
-        pos: [30, 30],
-        vel: [20, 20],
-        radius: 1,
-        color: "#00ff00"
-    });
+    // let mo = new MovingObject({
+    //     pos: [30, 30],
+    //     vel: [20, 20],
+    //     radius: 1,
+    //     color: "#00ff00"
+    // });
     // console.log(mo);
-    mo.draw(ctx);
+    // mo.draw(ctx);
     // mo.move();
     
     
     let s1 = new Simulation();
     
-    let np = new Person({ 
-        pos: [90, 90], 
-        vel: [20, 20]
-    });
+    // let np = new Person({ 
+    //     pos: [90, 90], 
+    //     vel: [20, 20]
+    // });
     // console.log(np);
-    np.draw(ctx);
+    // np.draw(ctx);
 
     console.log(s1);
 
