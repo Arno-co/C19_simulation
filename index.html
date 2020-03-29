@@ -10,8 +10,30 @@
     <script type="application/javascript" src="./dist/main.js"></script>
 </head>
 <body>
-    <canvas id="simulation-canvas"></canvas>
-    <canvas id="simulation-canvas"></canvas>
-    Welcome1
+    <div class="main">
+        <div class='data-input'>Data Input
+            <!-- <select type='dropdown' name="density" id="density">Density
+                <option value="300">NYC</option>
+                <option value="200">Portland</option>
+                <option value="100">Ohio</option>
+            </select> -->
+            <div class="slidecontainer">
+            
+                <p>Density:</p>
+                <input type="range" min="20" max="400" value="210" class="slider" id="my-density-range">
+                <p>Value: <span id="density-value"></span></p>
+                <p>Social Distancing in % of the population:</p>
+                <input type="range" min="0" max="90" value="45" class="slider" id="my-social-range">
+                <p>Value: <span id="social-value"></span></p>
+            </div>
+            <div>
+                <button id='start'>Start simulation</button>
+            </div>
+        </div>
+        <div class="canvas-container">
+            <canvas id="simulation-canvas"></canvas>
+            <!-- <canvas id="simulation-canvas"></canvas> -->
+        </div>
+    </div>
 </body>
 </html>

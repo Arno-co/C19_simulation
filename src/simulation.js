@@ -1,17 +1,20 @@
 import {Person, DEFAULTS} from './person';
 import {Util} from './util';
+import SimulationView from './simulation_view';
 
 export default class Simulation {
-    constructor(density, socialDistancingRate) {
+    constructor(density, socialDistancingRate, ctx) {
         this.DIM_X = 600;
         this.DIM_Y = 400;
         this.NUM_PERSONS = 100;
         this.density = density;
         this.socialDistancingRate = socialDistancingRate;
+        this.populationInfected = false;
         this.persons = [];
         this.addPersons();
         this.addPatientZero();
         this.addConsciousCitizen();
+        this.draw(ctx);
     }
 
     // handleDensity() {
@@ -45,6 +48,7 @@ export default class Simulation {
         for (let i=0; i<this.persons.length * this.socialDistancingRate; i++) {
             this.persons[i].consciousCitizen = true;
             this.persons[i].vel = [0,0];
+            this.persons[i].color = 'green';
         }
     }
     
@@ -102,17 +106,33 @@ export default class Simulation {
 
     bounce(pos, vel) {
         let rad = DEFAULTS.RADIUS
-        if (pos[0]-rad <= 0 || pos[0]+rad>= this.DIM_X) {
+        if (pos[0]-rad < 0 || pos[0]+rad > this.DIM_X) {
            vel[0] = - vel[0] 
-        } else if (pos[1]-rad <= 0 || pos[1]+rad >= this.DIM_Y) {
+        } else if (pos[1]-rad < 0 || pos[1]+rad > this.DIM_Y) {
             vel[1] = - vel[1]
         }
         return vel;
     }
 
+    handleInfection() {
+        if (this.persons.every(person => person.color === 'red')) {
+            this.populationInfected = true;
+        }
+    }
+
     step() {
+
         this.moveObjects();
         this.checkCollisions();
+        this.handleInfection();
+
+        // if (!this.populationInfected) {
+        //     this.moveObjects();
+        //     this.checkCollisions();
+        //     this.handleInfection();
+        // } else {
+        //     return null;
+        // }
     }
 
 }

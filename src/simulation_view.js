@@ -11,10 +11,12 @@ export default class SimulationView {
         let simulationInterval = setInterval(() => {
             this.simulation.step();
             this.simulation.draw(this.ctx);
-        }, 20)
+            if (this.simulation.populationInfected) {
+                clearInterval(simulationInterval);
+            }
+        }, 20);
+
+        
     }
 
-    stop() {
-        clearInterval(simulationInterval);
-    }
 }

@@ -14,8 +14,8 @@ span, article, footer, time, small {
   text-decoration: inherit;
   vertical-align: inherit;
   box-sizing: inherit;
-  background: transparent;
-  border: 1px solid blue;
+  background: lightgray;
+  /* border: 1px solid blue; */
 }
 
 ul {
