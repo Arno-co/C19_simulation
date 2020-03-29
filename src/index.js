@@ -8,6 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const canvasEl1 = document.getElementsByTagName("canvas")[0];
     // const canvasEl2 = document.getElementsByTagName("canvas")[1];
 
+    canvasEl1.width = Simulation.DIM_X;
+    canvasEl1.height = Simulation.DIM_Y;
+    const ctx1 = canvasEl1.getContext("2d");
+
+    // canvasEl2.width = Simulation.DIM_X;
+    // canvasEl2.height = Simulation.DIM_Y;
+    // const ctx2 = canvasEl2.getContext("2d");
+
+    console.log('webpack is working');
+
+
+    window.Simulation = Simulation;
+    window.SimulationView = SimulationView;
+
+    
 
 
     let density = document.getElementById('my-density-range');
@@ -19,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         outputDensity.innerHTML = this.value;
         let s1 = new Simulation(this.value, socialDist.value / 100, ctx1);
-        console.log(s1);
     }
     console.log(density.value);
 
@@ -37,27 +51,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let startSimulation = document.getElementById('start');
     startSimulation.onclick = function () {
+        let s1 = new Simulation(density.value, socialDist.value / 100, ctx1);
+        let sv1 = new SimulationView(s1, ctx1)
         sv1.start();
     }
     
-
-    canvasEl1.width = Simulation.DIM_X;
-    canvasEl1.height = Simulation.DIM_Y;
-    const ctx1 = canvasEl1.getContext("2d");
-
-    // canvasEl2.width = Simulation.DIM_X;
-    // canvasEl2.height = Simulation.DIM_Y;
-    // const ctx2 = canvasEl2.getContext("2d");
-  
-    console.log('webpack is working');
-
-
-    window.Simulation = Simulation;
-    window.SimulationView = SimulationView;
-
     let s1 = new Simulation(density.value, socialDist.value / 100, ctx1);
     console.log(s1);
-    let sv1 = new SimulationView(s1, ctx1)
+    // let sv1 = new SimulationView(s1, ctx1)
+
+    
     // sv1.start();
 
 
