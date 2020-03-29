@@ -16,6 +16,7 @@ export class Person extends MovingObject {
         parameters.pos = parameters.pos || parameters.simulation.randomPosition();
         parameters.vel = parameters.vel || Util.randomVec(DEFAULTS.SPEED);
         parameters.consciousCtizen = false;
+        parameters.infected = false;
         // parameters.pos = parameters.pos;
         // parameters.vel = parameters.vel;
         super(parameters);

@@ -8,15 +8,20 @@ export default class SimulationView {
     }
 
     start() {
-        let simulationInterval = setInterval(() => {
+        this.simulation.simulationInterval = setInterval(() => {
             this.simulation.step();
             this.simulation.draw(this.ctx);
             if (this.simulation.populationInfected) {
-                clearInterval(simulationInterval);
+                clearInterval(this.simulation.simulationInterval);
             }
         }, 20);
 
         
+    }
+
+    stop(simulation) {
+        
+        clearInterval(simulation.simulationInterval);
     }
 
 }

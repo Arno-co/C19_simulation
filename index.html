@@ -6,12 +6,16 @@
     <title>C19 Simulation</title>
     <link rel="stylesheet" href="./dist/reset.css">
     <link rel="stylesheet" href="./dist/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script type="application/javascript" src="./dist/bundle.js"></script>
     <script type="application/javascript" src="./dist/main.js"></script>
 </head>
 <body>
+    <h1>A VIRAL INFECTION SIMULATION BY WAY OF POPULATION DENSITY AND SOCIAL DISTANCING</h1>
+    <!-- <img src="./images/outbreak-coronavirus-world.png" alt=""> -->
     <div class="main">
-        <div class='data-input'>Data Input
+        <div class='data-input'>
+            <div id="data-input-title">DATA INPUT</div>
             <!-- <select type='dropdown' name="density" id="density">Density
                 <option value="300">NYC</option>
                 <option value="200">Portland</option>
@@ -20,14 +24,30 @@
             <div class="slidecontainer">
             
                 <p>Density:</p>
-                <input type="range" min="20" max="400" value="210" class="slider" id="my-density-range">
+                <input type="range" min="40" max="360" value="200" class="slider" id="my-density-range">
                 <p>Value: <span id="density-value"></span></p>
                 <p>Social Distancing in % of the population:</p>
                 <input type="range" min="0" max="90" value="45" class="slider" id="my-social-range">
-                <p>Value: <span id="social-value"></span></p>
+                <p>Value: <span id="social-value"></span>% of the population is socially distancing</p>
             </div>
-            <div>
-                <button id='start'>Start simulation</button>
+            <div class="buttons-container">
+                <p>SIMULATION</p>
+                <button id='start'>START</button>
+                <button id='stop'>STOP</button>
+            </div>
+            <div id="legend">
+                <div class='legend-line'>
+                    <p id='infected'>o</p>
+                    <p>infected</p>
+                </div>
+                <div class='legend-line'>
+                    <p id="distancing">o</p>
+                    <p>socially distancing</p>
+                </div>
+                <div class='legend-line'>
+                    <p id="mobile">o</p>
+                    <p>social mobility unchanged</p>
+                </div>
             </div>
         </div>
         <div class="canvas-container">

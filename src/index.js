@@ -49,11 +49,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     console.log(socialDist.value);
 
+    let currentSimulation = null;
+    let currentSimulationView = null;
+
     let startSimulation = document.getElementById('start');
     startSimulation.onclick = function () {
-        let s1 = new Simulation(density.value, socialDist.value / 100, ctx1);
-        let sv1 = new SimulationView(s1, ctx1)
-        sv1.start();
+        currentSimulation = new Simulation(density.value, socialDist.value / 100, ctx1);
+        currentSimulationView = new SimulationView(currentSimulation, ctx1)
+        currentSimulationView.start();
+        console.log(currentSimulation);
+    
+    }
+    
+    let stopSimulation = document.getElementById('stop');
+    stopSimulation.onclick = function () {
+        currentSimulationView.stop(currentSimulation);
     }
     
     let s1 = new Simulation(density.value, socialDist.value / 100, ctx1);

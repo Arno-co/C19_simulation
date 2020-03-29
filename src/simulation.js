@@ -11,6 +11,8 @@ export default class Simulation {
         this.socialDistancingRate = socialDistancingRate;
         this.populationInfected = false;
         this.persons = [];
+        this.simulationInterval = null;
+        this.infectionNumber = 0;
         this.addPersons();
         this.addPatientZero();
         this.addConsciousCitizen();
@@ -40,17 +42,21 @@ export default class Simulation {
     }
 
     addPatientZero() {
-        this.persons[this.persons.length-1].color = 'red';
+        this.persons[0].color = 'red';
+        this.persons[0].infected = true;
+        this.infectionNuber =+ 1;
     }
 
     addConsciousCitizen() {
         // debugger;
-        for (let i=0; i<this.persons.length * this.socialDistancingRate; i++) {
+        for (let i=1; i<this.persons.length * this.socialDistancingRate+1; i++) {
             this.persons[i].consciousCitizen = true;
             this.persons[i].vel = [0,0];
             this.persons[i].color = 'green';
         }
     }
+
+
     
     randomPosition() {
         const rad = DEFAULTS.RADIUS;
@@ -81,7 +87,6 @@ export default class Simulation {
                 let pers1 = this.persons[i];
                 let pers2 = this.persons[j];
                 
-                // debugger;
                 if (pers1.isCollidedWith(pers2)) {
                         // pers1.vel = pers1.changeDir(pers1.vel);
                         // pers1.color = '#ff0000';
@@ -90,10 +95,14 @@ export default class Simulation {
                         // pers1.pos = this.bounce(pers1.vel, pers1.pos)
                         // pers2.pos = this.bounce(pers2.vel, pers2.pos)
                         Util.resolveCollision(pers1, pers2);
-                        if (pers1.color === 'red') {
-                        pers2.color = 'red'
-                        } else if (pers2.color === 'red') {
-                            pers1.color = 'red'
+                        if (pers1.color === 'red' && pers2.color !== 'red') {
+                        pers2.color = 'red';
+                        pers2.infected = true;
+                        this.infectionNuber += 1;
+                        } else if (pers2.color === 'red' && pers1.color !== 'red') {
+                            pers1.color = 'red';
+                            pers1.infected = 'true';
+                            this.infectionNuber += 1;
                         };
                         // this.removeObject(pers1);
                         // this.removeObject(pers2);
@@ -115,7 +124,7 @@ export default class Simulation {
     }
 
     handleInfection() {
-        if (this.persons.every(person => person.color === 'red')) {
+        if (this.infectionNuber / this.density > 0.99) {
             this.populationInfected = true;
         }
     }
@@ -125,6 +134,7 @@ export default class Simulation {
         this.moveObjects();
         this.checkCollisions();
         this.handleInfection();
+        console.log(this.infectionNuber);
 
         // if (!this.populationInfected) {
         //     this.moveObjects();

@@ -1,17 +1,31 @@
 #simulation-canvas {
 
-    border: 1px solid black;
+    border: 2px solid #1b7d92;
     border-radius: 5px;
     background-color: white;
 
 }
 
+
+
 body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    background-color: lightgrey 0.5;
+    background: url('../images/outbreak-coronavirus-world.png') no-repeat center center fixed; 
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
+  background-size: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  font-size: 20px;
+  padding: 40px;
 }
 
 .main {
@@ -19,22 +33,34 @@ body {
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    height: auto;
 }
 
 .data-input {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 30%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.data-input-title {
+  height: 10%;
 }
 
 .canvas-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 
 }
 
 .slidecontainer {
-  width: 100%; /* Width of the outside container */
+  width: 80%; /* Width of the outside container */
+  height: 40%;
+  font-size: 0.75em;
 }
 
 .slider {
@@ -65,4 +91,61 @@ body {
   border-radius: 50%;
   background: #4CAF50;
   cursor: pointer;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 25%;
+}
+
+#start {
+  width: 40%;
+  border: 2px solid #1b7d92;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+#stop {
+  width: 40%;
+  border: 2px solid #1b7d92;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+#legend {
+  background-color: white;
+  border: 2px solid #1b7d92;
+  border-radius: 5px;
+  display: flex;
+  height: auto;
+  width: 80%;
+  flex-direction: column;
+  margin-top: auto;
+  font-size: 0.75em;
+}
+
+.legend-line {
+  display: flex;
+  flex-direction: row;
+}
+
+#infected {
+  color: red;
+  padding: 0 0.5em;
+}
+#distancing {
+  color: green;
+  padding: 0 0.5em;
+}
+#mobile {
+  color: blue;
+  padding: 0 0.5em;
 }
