@@ -19,9 +19,7 @@ export default class Simulation {
         this.draw(ctx);
     }
 
-    // handleDensity() {
 
-    // }
 
     addPersons() {
         for(let i=0; i<this.density; i++) {
@@ -44,7 +42,7 @@ export default class Simulation {
     addPatientZero() {
         this.persons[0].color = 'red';
         this.persons[0].infected = true;
-        this.infectionNuber =+ 1;
+        this.infectionNumber =+ 1;
     }
 
     addConsciousCitizen() {
@@ -88,24 +86,18 @@ export default class Simulation {
                 let pers2 = this.persons[j];
                 
                 if (pers1.isCollidedWith(pers2)) {
-                        // pers1.vel = pers1.changeDir(pers1.vel);
-                        // pers1.color = '#ff0000';
-                        // pers2.vel = pers2.changeDir(pers2.vel);
-                        // pers2.color = '#ff0000';
-                        // pers1.pos = this.bounce(pers1.vel, pers1.pos)
-                        // pers2.pos = this.bounce(pers2.vel, pers2.pos)
+               
                         Util.resolveCollision(pers1, pers2);
                         if (pers1.color === 'red' && pers2.color !== 'red') {
                         pers2.color = 'red';
                         pers2.infected = true;
-                        this.infectionNuber += 1;
+                        this.infectionNumber += 1;
                         } else if (pers2.color === 'red' && pers1.color !== 'red') {
                             pers1.color = 'red';
                             pers1.infected = 'true';
-                            this.infectionNuber += 1;
+                            this.infectionNumber += 1;
                         };
-                        // this.removeObject(pers1);
-                        // this.removeObject(pers2);
+
                         
                 }
             }
@@ -134,19 +126,11 @@ export default class Simulation {
         this.moveObjects();
         this.checkCollisions();
         this.handleInfection();
-        console.log(this.infectionNuber);
 
-        // if (!this.populationInfected) {
-        //     this.moveObjects();
-        //     this.checkCollisions();
-        //     this.handleInfection();
-        // } else {
-        //     return null;
-        // }
     }
 
 }
 
 Simulation.DIM_X = 600;
 Simulation.DIM_Y = 400;
-// Simulation.NUM_PERSONS = 100;
+

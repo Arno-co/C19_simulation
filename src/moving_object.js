@@ -21,7 +21,6 @@ export default class MovingObject {
             this.radius,
             0,
             2 * Math.PI
-            // false
         );
         ctx.stroke();
      }
@@ -29,7 +28,6 @@ export default class MovingObject {
     move() {
         this.pos = [(this.pos[0] + this.vel[0]), (this.pos[1] + this.vel[1])]
         this.vel = this.simulation.bounce(this.pos, this.vel);
-        // console.log(this.pos);
     };
 
     changeDir(vel) {

@@ -6,15 +6,12 @@ import {Person} from './person';
 
 document.addEventListener("DOMContentLoaded", function () {
     const canvasEl1 = document.getElementsByTagName("canvas")[0];
-    // const canvasEl2 = document.getElementsByTagName("canvas")[1];
 
     canvasEl1.width = Simulation.DIM_X;
     canvasEl1.height = Simulation.DIM_Y;
     const ctx1 = canvasEl1.getContext("2d");
 
-    // canvasEl2.width = Simulation.DIM_X;
-    // canvasEl2.height = Simulation.DIM_Y;
-    // const ctx2 = canvasEl2.getContext("2d");
+
 
     console.log('webpack is working');
 
@@ -23,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.SimulationView = SimulationView;
 
     
+    let infectedNumber = document.getElementById("infected-number");
 
 
     let density = document.getElementById('my-density-range');
@@ -51,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let currentSimulation = null;
     let currentSimulationView = null;
+    
 
     let startSimulation = document.getElementById('start');
     startSimulation.onclick = function () {
@@ -58,8 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
         currentSimulationView = new SimulationView(currentSimulation, ctx1)
         currentSimulationView.start();
         console.log(currentSimulation);
-    
+        
+        
+        // infectedNumber.innerHTML = currentSimulation.infectionNumber;
     }
+
     
     let stopSimulation = document.getElementById('stop');
     stopSimulation.onclick = function () {
@@ -68,18 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let s1 = new Simulation(density.value, socialDist.value / 100, ctx1);
     console.log(s1);
-    // let sv1 = new SimulationView(s1, ctx1)
-
-    
-    // sv1.start();
-
-
-    // let s2 = new Simulation(50, 0.8);
-    // console.log(s2);
-    // let sv2 = new SimulationView(s2, ctx2)
-    // sv2.start();
-
-
 
     
 });
