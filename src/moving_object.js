@@ -13,7 +13,7 @@ export default class MovingObject {
 
 
     draw(ctx) {
-        ctx.strokeStyle = this.color;
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(
             this.pos[0],
@@ -22,7 +22,7 @@ export default class MovingObject {
             0,
             2 * Math.PI
         );
-        ctx.stroke();
+        ctx.fill();
      }
 
     move() {
