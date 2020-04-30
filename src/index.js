@@ -11,11 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     canvasEl1.height = Simulation.DIM_Y;
     const ctx1 = canvasEl1.getContext("2d");
 
-
-
-    console.log('webpack is working');
-
-
     window.Simulation = Simulation;
     window.SimulationView = SimulationView;
 

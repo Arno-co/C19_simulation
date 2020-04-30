@@ -13,6 +13,7 @@ export default class SimulationView {
             this.simulation.draw(this.ctx);
             if (this.simulation.populationInfected) {
                 clearInterval(this.simulation.simulationInterval);
+                // this.stop(this.simulation)
             }
         }, 20);
 

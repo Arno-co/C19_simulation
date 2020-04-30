@@ -116,9 +116,9 @@ export default class Simulation {
     }
 
     handleInfection() {
-        if (this.infectionNuber / this.density > 0.99) {
+        if (this.infectionNumber / this.density > 0.99) {
             this.populationInfected = true;
-        }
+        }   
     }
 
     step() {
