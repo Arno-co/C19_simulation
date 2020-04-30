@@ -139,17 +139,30 @@ h1 {
 .legend-line {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 #infected {
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
   color: red;
-  padding: 0 0.5em;
+  background-color: red;
+  margin: 0 0.5em;
 }
 #distancing {
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
   color: green;
-  padding: 0 0.5em;
+  background-color: green;
+  margin: 0 0.5em;
 }
 #mobile {
-  color: blue;
-  padding: 0 0.5em;
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
+  color: #a9a9a9;
+  background-color: #a9a9a9;
+  margin: 0 0.5em;
 }
