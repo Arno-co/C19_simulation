@@ -27,7 +27,7 @@ The virus starts spreading via the patient zero (in red) and the speed of the sp
 ### Setting up
 Please run the following command:
 ```
-bundle install
+npm install
 ```
 
 ### Running the app
