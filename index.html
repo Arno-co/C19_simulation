@@ -11,7 +11,7 @@
     <script type="application/javascript" src="./dist/main.js"></script>
 </head>
 <body>
-    <h1>A VIRAL INFECTION SIMULATION BY WAY OF POPULATION DENSITY AND SOCIAL DISTANCING</h1>
+    <h1>A SIMULATION OF A VIRAL INFECTION SPREAD AND THE IMPORTANCE OF SOCIAL DISTANCING</h1>
     <!-- <img src="./images/outbreak-coronavirus-world.png" alt=""> -->
     <div class="main">
         <div class='data-input'>
@@ -47,7 +47,9 @@
         </div>
         <div class="canvas-container">
             <canvas id="simulation-canvas"></canvas>
-            <div id='infection-rate'></div>
+            <div class='infection-rate-container'>
+                <div id='infection-rate'></div>% of the population has been infected in <div id='infection-time'></div> time units.
+            </div>
             <canvas id="graph-canvas"></canvas>
             <!-- <canvas id="simulation-canvas"></canvas> -->
             <!-- <p>infected: <span id="infected-number"></span></p> -->

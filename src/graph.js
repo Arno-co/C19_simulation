@@ -10,6 +10,7 @@ export default class Graph {
         this.columns = [];
         this.graphInterval = null;
         this.simulation = simulation;
+        this.timeUnits = 0;
         this.populationInfected = this.simulation.populationInfected
         this.draw(ctx);
 
@@ -27,27 +28,36 @@ export default class Graph {
             if (this.XParameter >= this.DIM_X) {
                 this.resize()
             }
-        }
-        
-        draw(ctx) {
-            ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-        this.columns.forEach(column => column.draw(ctx));
-        }
+    }
+    
+    draw(ctx) {
+        ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+    this.columns.forEach(column => column.draw(ctx));
+    }
 
-        resize() {
-            this.columnWidth /= 2;
-            this.XParameter = this.columnWidth / 2
-            this.columns.forEach( column => {
-                column.pos[0] = this.XParameter;
-                column.width = this.columnWidth;
-                this.XParameter += this.columnWidth;
-            })
+    resize() {
+        this.columnWidth /= 2;
+        this.XParameter = this.columnWidth / 2
+        this.columns.forEach( column => {
+            column.pos[0] = this.XParameter;
+            column.width = this.columnWidth;
+            this.XParameter += this.columnWidth;
+        })
 
-            this.draw(this.ctx)
-        }
+        this.draw(this.ctx)
+    }
+
+    updateInfectionRate() {
+        let infectionRate = document.getElementById('infection-rate');
+        infectionRate.innerHTML = Math.floor(this.simulation.infectionNumber / this.simulation.density * 100)
+        let infectionTime = document.getElementById('infection-time');
+        infectionTime.innerHTML = this.timeUnits / 100
+    }
 
     step() {
         this.addColumn();
+        this.updateInfectionRate();
+        this.timeUnits += 1;
     }
 
 }

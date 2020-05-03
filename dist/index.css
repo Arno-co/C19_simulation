@@ -175,4 +175,19 @@ h1 {
 
 #infection-rate{
   min-height: 25px;
+  min-width: 25px;
+  text-align: center;
+}
+
+#infection-time{
+  min-width: 40px;
+  padding-left: 10px;
+}
+
+.infection-rate-container{
+  width: 100%;
+  color: #1b7d92;
+  background-color: white;
+  display: flex;
+  justify-content: center;
 }
