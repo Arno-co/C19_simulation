@@ -1,9 +1,15 @@
 #simulation-canvas {
 
     border: 2px solid #1b7d92;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     background-color: white;
 
+}
+
+#graph-canvas{  
+  border: 2px solid #1b7d92;
+    /* border-radius: 5px; */
+    background-color: white;
 }
 
 
@@ -165,4 +171,8 @@ h1 {
   color: #a9a9a9;
   background-color: #a9a9a9;
   margin: 0 0.5em;
+}
+
+#infection-rate{
+  min-height: 25px;
 }

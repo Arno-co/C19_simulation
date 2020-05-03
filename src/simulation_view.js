@@ -1,4 +1,4 @@
-import Simulation from './simulation';
+
 
 
 export default class SimulationView {

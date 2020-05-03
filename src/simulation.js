@@ -46,7 +46,6 @@ export default class Simulation {
     }
 
     addConsciousCitizen() {
-        // debugger;
         for (let i=1; i<this.persons.length * this.socialDistancingRate+1; i++) {
             this.persons[i].consciousCitizen = true;
             this.persons[i].vel = [0,0];
