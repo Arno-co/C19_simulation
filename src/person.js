@@ -4,7 +4,7 @@ import { Util } from './util';
 export const DEFAULTS = {
     RADIUS: 2,
     COLOR: "lightgray",
-    SPEED: 2,
+    SPEED: 4,
     MASS: 1
 }
 
