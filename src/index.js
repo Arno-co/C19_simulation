@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let startSimulation = document.getElementById('start');
     startSimulation.onclick = function () {
-        if (!currentSimulation) {
+        if (!currentSimulation || currentSimulation === s1 || currentSimulation.populationInfected) {
             currentSimulation = new Simulation(density.value, socialDist.value / 100, ctx1);
             currentSimulationView = new SimulationView(currentSimulation, ctx1);
             currentGraph = new Graph(currentSimulation, ctx2);
@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
     clearSimulation.onclick = function () {
         if (!currentSimulation || currentSimulation.populationInfected) {
             let s2 = new Simulation(density.value, socialDist.value / 100, ctx1);
-            let g2 = new Graph (s2, ctx2)
+            let g2 = new Graph (s2, ctx2);
+            g2.updateInfectionRate();
         } else {
             return null;
         }
