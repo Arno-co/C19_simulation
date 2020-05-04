@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.GraphView = GraphView;
 
     
-    let infectedNumber = document.getElementById("infected-number");
+    // let infectedNumber = document.getElementById("infected-number");
 
 
     let density = document.getElementById('my-density-range');
@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
         outputDensity.innerHTML = this.value;
         let s1 = new Simulation(this.value, socialDist.value / 100, ctx1);
     }
-    console.log(density.value);
 
     let socialDist = document.getElementById('my-social-range');
     let outputSocialDist = document.getElementById('social-value');
@@ -52,39 +51,51 @@ document.addEventListener("DOMContentLoaded", function () {
         let s1 = new Simulation(density.value, this.value / 100, ctx1);
         return s1;
     }
-    console.log(socialDist.value);
 
     let currentSimulation = null;
-    window.currentSimulation = currentSimulation;
     let currentSimulationView = null;
     let currentGraph = null;
     let currentGraphView = null;
-    let infectionRate = document.getElementById('infection-rate');
+
     
     let startSimulation = document.getElementById('start');
     startSimulation.onclick = function () {
-        currentSimulation = new Simulation(density.value, socialDist.value / 100, ctx1);
-        currentSimulationView = new SimulationView(currentSimulation, ctx1);
-        currentGraph = new Graph (currentSimulation, ctx2);
-        currentGraphView = new GraphView(currentGraph, currentSimulation, ctx2);
-        currentSimulationView.start();
-        currentGraphView.start();
-        console.log(currentSimulation);
-        console.log(currentGraph);
-        // infectedNumber.innerHTML = currentSimulation.infectionNumber;
+        if (!currentSimulation) {
+            currentSimulation = new Simulation(density.value, socialDist.value / 100, ctx1);
+            currentSimulationView = new SimulationView(currentSimulation, ctx1);
+            currentGraph = new Graph(currentSimulation, ctx2);
+            currentGraphView = new GraphView(currentGraph, currentSimulation, ctx2);
+            currentSimulationView.start();
+            currentGraphView.start();
+        } else {
+            return null;
+        }
     }
 
-    // infectionRate.innerHTML = currentSimulation.infectionNumber || 0
     
     
     let stopSimulation = document.getElementById('stop');
     stopSimulation.onclick = function () {
-        currentSimulationView.stop(currentSimulation);
-        currentGraphView.stop(currentGraph)
+        if (currentSimulation) {
+            currentSimulationView.stop(currentSimulation);
+            currentGraphView.stop(currentGraph)
+            currentSimulation = null;
+            currentGraph = null;
+        } else {
+            return null;
+        }
     }
     
     let s1 = new Simulation(density.value, socialDist.value / 100, ctx1);
-    console.log(s1);
-
     
+    
+    let clearSimulation = document.getElementById('clear');
+    clearSimulation.onclick = function () {
+        if (!currentSimulation || currentSimulation.populationInfected) {
+            let s2 = new Simulation(density.value, socialDist.value / 100, ctx1);
+            let g2 = new Graph (s2, ctx2)
+        } else {
+            return null;
+        }
+    }
 });

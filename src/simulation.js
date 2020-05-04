@@ -67,6 +67,10 @@ export default class Simulation {
         this.persons.forEach( person => person.draw(ctx));
     }
 
+    clear(ctx) {
+        ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+    }
+
     moveObjects() {
         this.persons.forEach((person) => {
             person.move();

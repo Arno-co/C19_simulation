@@ -35,6 +35,10 @@ export default class Graph {
     this.columns.forEach(column => column.draw(ctx));
     }
 
+    clear(ctx) {
+        ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+    }
+
     resize() {
         this.columnWidth /= 2;
         this.XParameter = this.columnWidth / 2
