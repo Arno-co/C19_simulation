@@ -29,6 +29,18 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[class^='icon-arno'] {
+  color: #1b7d92;
+  padding: 0 5px; 
+}
+
 h1 {
   font-size: 20px;
   padding: 40px;
